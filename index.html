@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Glow Store | Boutique d'Articles</title>
+    <meta name="description" content="Boutique en ligne de produits de qualité. Vêtements, chaussures, équipements et accessoires aux meilleurs prix.">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #faf1c2, #aca283);
+            color: white;
+            padding: 0.8rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            color: #ff6b35;
+            margin-right: 8px;
+        }
+
+        /* Menu Hamburger pour mobile */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        nav {
+            display: flex;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s;
+            padding: 5px 0;
+        }
+
+        nav ul li a:hover {
+            color: #f6f697;
+        }
+
+        /* Dropdown menu */
+        .dropdown-menu {
+            background: #aca283;
+            border: none;
+            margin-top: 0;
+        }
+
+        .dropdown-menu .dropdown-item {
+            color: white;
+        }
+
+        .dropdown-menu .dropdown-item:hover {
+            background: #f7dd89;
+            color: white;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -15px;
+            background: #ff6b35;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 8px;
+            font-size: 0.7rem;
+        }
+
+        /* Hero Section   taswiret lbackground */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("tsawr/bakgroundd.jpeg");
+            background-size: cover;
+            background-position: center;
+            height: 850px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            background: #ff6b35;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            background: #ff5722;
+        }
+
+        /* Categories */
+        .categories {
+            padding: 3rem 5%;
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: #aca283;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .category-card {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            transition: transform 0.3s;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .category-card i {
+            font-size: 2.5rem;
+            color: #ff6b35;
+            margin-bottom: 1rem;
+        }
+
+        .category-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-card p {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        /* Products */
+        .products {
+            padding: 3rem 5%;
+            background: #f5f5f5;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff6b35;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: 0.75rem;
+        }
+
+        .product-info {
+            padding: 1.2rem;
+        }
+
+        .product-title {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color:#b59535;
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            color: #ff6b35;
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 0.85rem;
+            margin-left: 8px;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            background:  #aca283;
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background: #aca283;
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 380px;
+            height: 100%;
+            background: white;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            z-index: 1001;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.open {
+            right: 0;
+        }
+
+        .cart-header {
+            background: #aca283;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 1rem;
+            padding: 0.8rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .cart-item-price {
+            color: #ff6b35;
+            font-size: 0.9rem;
+        }
+
+        .remove-item {
+            color: #ff4444;
+            cursor: pointer;
+        }
+
+        .cart-footer {
+            padding: 1rem;
+            border-top: 2px solid #eee;
+        }
+
+        .cart-total {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: #ff6b35;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        /* Checkout Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #faf1c2, #aca283);
+            color: white;
+            padding: 1.2rem;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 1.3rem;
+        }
+
+        .modal-body {
+            padding: 1.2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ff6b35;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 70px;
+        }
+
+        /* Delivery Options */
+        .delivery-options {
+            display: flex;
+            gap: 0.8rem;
+            margin: 0.8rem 0;
+            flex-wrap: wrap;
+        }
+
+        .delivery-option {
+            flex: 1;
+            text-align: center;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .delivery-option:hover {
+            border-color: #ff6b35;
+        }
+
+        .delivery-option.selected {
+            border-color: #ff6b35;
+            background: #fff3ef;
+        }
+
+        .delivery-option i {
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .delivery-option .whatsapp-icon {
+            color: #25D366;
+        }
+
+        .delivery-option .email-icon {
+            color: #ff6b35;
+        }
+
+        .delivery-option h4 {
+            margin: 0.3rem 0;
+            font-size: 0.9rem;
+        }
+
+        .delivery-option p {
+            font-size: 0.7rem;
+            color: #666;
+        }
+
+        .order-summary {
+            background: #f8f9fa;
+            padding: 0.8rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .order-summary h3 {
+            margin-bottom: 0.5rem;
+            color: #aca283;
+            font-size: 1rem;
+        }
+
+        .order-items {
+            max-height: 150px;
+            overflow-y: auto;
+            margin-bottom: 0.8rem;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid #ddd;
+            font-size: 0.85rem;
+        }
+
+        .modal-footer {
+            padding: 1rem;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 0.8rem;
+            justify-content: flex-end;
+        }
+
+        .btn-submit {
+            background: #ff6b35;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .btn-cancel {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .btn-submit:hover {
+            background: #ff5722;
+        }
+
+        .btn-cancel:hover {
+            background: #aca283;
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            display: none;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background:  #dbcd9f;
+            color: white;
+            padding: 2rem 5% 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.4rem;
+        }
+
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .footer-section ul li a:hover {
+            color: #ff6b35;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.3rem;
+            margin-right: 0.8rem;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #ff6b35;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #daa814;
+            font-size: 0.8rem;
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background:  #1ddd40;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            z-index: 2001;
+            animation: slideIn 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #25D366;
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        /* ========== RESPONSIVE STYLES (FIXED) ========== */
+        @media (max-width: 992px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                right: -280px;
+                width: 260px;
+                height: 100%;
+                background: linear-gradient(135deg, #faf1c2, #aca283);
+                z-index: 1002;
+                transition: right 0.3s ease;
+                box-shadow: -2px 0 15px rgba(0,0,0,0.2);
+                padding: 60px 20px 20px;
+            }
+
+            nav.open {
+                right: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul li a {
+                display: block;
+                padding: 8px 0;
+                font-size: 1rem;
+                border-bottom: 1px solid rgba(255,255,255,0.2);
+            }
+
+            .dropdown-menu {
+                position: static !important;
+                background: rgba(255,255,255,0.1);
+                border: none;
+                margin: 5px 0 0 15px;
+                width: auto;
+            }
+
+            .dropdown-menu .dropdown-item {
+                color: white;
+                padding: 5px 10px;
+            }
+
+            .close-menu-btn {
+                position: absolute;
+                top: 15px;
+                left: 15px;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-content p {
+                font-size: 0.9rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 1rem;
+            }
+
+            .product-image {
+                height: 160px;
+            }
+
+            .product-title {
+                font-size: 0.85rem;
+            }
+
+            .product-price {
+                font-size: 1rem;
+            }
+
+            .add-to-cart {
+                font-size: 0.8rem;
+                padding: 6px;
+            }
+
+            .category-card {
+                padding: 1rem;
+            }
+
+            .category-card i {
+                font-size: 2rem;
+            }
+
+            .category-card h3 {
+                font-size: 1rem;
+            }
+
+            .delivery-options {
+                flex-direction: column;
+            }
+
+            .modal-content {
+                width: 95%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 0.8rem;
+            }
+
+            .product-image {
+                height: 140px;
+            }
+
+            .product-info {
+                padding: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="logo">
+                <i class="bi bi-bag-heart-fill"></i>
+                Glow Store
+            </div>
+            <nav id="mainNav">
+                <button class="close-menu-btn" id="closeMenuBtn">
+                    <i class="bi bi-house-dash-fill"></i>
+                </button>
+                <ul>
+                    <li><a href="#home" onclick="closeNavMenu()">Accueil</a></li>
+                    <li><a href="#products" onclick="closeNavMenu()">Produits</a></li>
+                    <li><a href="#categories" onclick="closeNavMenu()">Catégories</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Vêtements
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="homme.html" onclick="filterByCategory('Homme'); closeNavMenu()">Homme</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="filterByCategory('Femme'); closeNavMenu()">Femme</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#contact" onclick="closeNavMenu()">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="cart-icon" onclick="toggleCart()">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                
+               
+               
+            </div>
+        </section>
+
+        <section class="categories" id="categories">
+            <h2 class="section-title">Catégories</h2>
+            <div class="category-grid">
+                <div class="category-card" onclick="filterByCategory('Vêtements')">
+                    <i class="fas fa-tshirt"></i>
+                    <h3>Vêtements</h3>
+                    <p>Collection exclusive</p>
+                </div>
+                <div class="category-card" onclick="filterByCategory('Chaussures')">
+                    <i class="fas fa-shoe-prints"></i>
+                    <h3>Chaussures</h3>
+                    <p>Confortables et durables</p>
+                </div>
+                <div class="category-card" onclick="filterByCategory('Cosmétiques')">
+                    <i class="bi bi-brush-fill"></i>
+                    <h3>Produits Cosmétiques</h3>
+                    <p>Produits de beauté</p>
+                </div>
+                <div class="category-card" onclick="filterByCategory('Accessoires')">
+                    <i class="fas fa-watch"></i>
+                    <h3>Accessoires</h3>
+                    <p>Accessoires essentiels</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="products" id="products">
+            <h2 class="section-title">Produits Vedettes</h2>
+            <div class="product-grid" id="productGrid"></div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Glow Store</h3>
+                <p>La meilleure boutique d'articles</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/glow.store125"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@glow.store125"><i class="bi bi-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Liens Rapides</h3>
+                <ul>
+                    <li><a href="#home">Accueil</a></li>
+                    <li><a href="#products">Produits</a></li>
+                    <li><a href="#">Politique de retour</a></li>
+                    <li><a href="#">Livraison</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Coordonnées</h3>
+                <ul>
+                    <li><i class="fas fa-phone"></i> +216 26 061 991</li>
+                    <li><i class="fas fa-envelope"></i> benabdejlileya74@gmail.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> M'saken, Sousse</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 Glow Store. Tous droits réservés</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <div class="whatsapp-float" onclick="openWhatsApp()">
+        <i class="fab fa-whatsapp"></i>
+    </div>
+
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Panier</h3>
+            <i class="fas fa-times" style="cursor: pointer;" onclick="toggleCart()"></i>
+        </div>
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                Total: <span id="cartTotal">0</span> TND
+            </div>
+            <button class="checkout-btn" onclick="openCheckoutModal()">Passer à la caisse</button>
+        </div>
+    </div>
+    <div class="overlay" id="overlay" onclick="toggleCart()"></div>
+
+    <!-- Checkout Modal -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-clipboard-list"></i> Finaliser la commande</h2>
+            </div>
+            <div class="modal-body">
+                <form id="checkoutForm">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Prénom *</label>
+                        <input type="text" id="firstName" name="firstName" required placeholder="Votre prénom">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-user-tag"></i> Nom *</label>
+                        <input type="text" id="lastName" name="lastName" required placeholder="Votre nom">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-phone"></i> Téléphone *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="216XXXXXXXX" style="direction: ltr;">
+                        <small style="color: #666;">Entrez votre numéro avec l'indicatif</small>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" id="email" name="email" placeholder="exemple@email.com">
+                        <small style="color: #666;">Requis uniquement pour l'envoi par email</small>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-map-marker-alt"></i> Adresse *</label>
+                        <textarea id="address" name="address" required placeholder="Votre adresse complète"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-paper-plane"></i> Méthode d'envoi *</label>
+                        <div class="delivery-options">
+                            <div class="delivery-option" onclick="selectDeliveryMethod('whatsapp')" id="optionWhatsapp">
+                                <i class="fab fa-whatsapp whatsapp-icon"></i>
+                                <h4>WhatsApp</h4>
+                                <p>Envoyer via WhatsApp</p>
+                            </div>
+                            <div class="delivery-option" onclick="selectDeliveryMethod('email')" id="optionEmail">
+                                <i class="fas fa-envelope email-icon"></i>
+                                <h4>Email</h4>
+                                <p>Envoyer par email</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="order-summary">
+                        <h3><i class="fas fa-shopping-bag"></i> Récapitulatif</h3>
+                        <div class="order-items" id="orderItemsSummary"></div>
+                        <div style="border-top: 2px solid #ff6b35; padding-top: 0.5rem;">
+                            <strong>Total: <span id="orderTotalSummary" style="color: #ff6b35;">0</span> TND</strong>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeCheckoutModal()">Annuler</button>
+                <button class="btn-submit" onclick="submitOrder()">Confirmer</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Paramètres de la boutique
+        const STORE_SETTINGS = {
+            ownerWhatsApp: "21625908089",
+            ownerEmail: "benabdejlileya74@gmail.com",
+            welcomeMessage: "Bienvenue chez Glow Store ! Merci de votre visite."
+        };
+
+        const FORMSPREE_ENDPOINT = "https://formspree.io/f/xqewdzgz";
+        let selectedDeliveryMethod = "whatsapp";
+        
+        const products = [
+            { id: 1, name: "T-Shirt Sport", category: "Vêtements", price: 89, oldPrice: 129, image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400", badge: "Promo" },
+            { id: 2, name: "Chaussures Sport", category: "Chaussures", price: 199, oldPrice: 299, image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400", badge: "Offre" },
+            { id: 3, name: "Haltère 5kg", category: "Équipement", price: 149, oldPrice: null, image: "https://images.unsplash.com/photo-1586401100295-7a8096fd231a?w=400", badge: "Meilleure vente" },
+            { id: 4, name: "Capuche", category: "Vêtements", price: 100, oldPrice: 150, image: "tsawr/cap.jpg", badge: "Promo" },
+            { id: 5, name: "Short Sport", category: "Vêtements", price: 79, oldPrice: 119, image: "https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=400", badge: null },
+            { id: 6, name: "Chaussures Running", category: "Chaussures", price: 249, oldPrice: 349, image: "https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=400", badge: "Offre" },
+            { id: 7, name: "عامل بناء", category: "Équipement", price: 50, oldPrice: null, image: "tsawr/fosh lmramaji.jpg", badge: null },
+            { id: 8, name: "Gourde Sport", category: "Accessoires", price: 49, oldPrice: 79, image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400", badge: "Promo" }
+        ];
+
+        let cart = [];
+        let currentCategory = "Tous";
+
+        // Fonctions du menu mobile
+        function openNavMenu() {
+            document.getElementById('mainNav').classList.add('open');
+        }
+
+        function closeNavMenu() {
+            document.getElementById('mainNav').classList.remove('open');
+        }
+
+        // Event listeners
+        document.getElementById('menuToggle').addEventListener('click', openNavMenu);
+        document.getElementById('closeMenuBtn').addEventListener('click', closeNavMenu);
+        document.getElementById('overlay').addEventListener('click', closeNavMenu);
+
+        function selectDeliveryMethod(method) {
+            selectedDeliveryMethod = method;
+            document.getElementById('optionWhatsapp').classList.remove('selected');
+            document.getElementById('optionEmail').classList.remove('selected');
+            
+            if (method === 'whatsapp') {
+                document.getElementById('optionWhatsapp').classList.add('selected');
+                document.getElementById('email').removeAttribute('required');
+                document.getElementById('email').parentElement.style.opacity = '0.5';
+            } else {
+                document.getElementById('optionEmail').classList.add('selected');
+                document.getElementById('email').setAttribute('required', 'required');
+                document.getElementById('email').parentElement.style.opacity = '1';
+            }
+        }
+
+        function displayProducts() {
+            const productGrid = document.getElementById('productGrid');
+            let filteredProducts = products;
+            if (currentCategory !== "Tous") {
+                filteredProducts = products.filter(p => p.category === currentCategory);
+            }
+            productGrid.innerHTML = filteredProducts.map(product => `
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}">
+                        ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-price">
+                            ${product.price} TND
+                            ${product.oldPrice ? `<span class="old-price">${product.oldPrice} TND</span>` : ''}
+                        </p>
+                        <button class="add-to-cart" onclick="addToCart(${product.id})">
+                            <i class="fas fa-shopping-cart"></i> Ajouter
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({...product, quantity: 1});
+            }
+            updateCart();
+            showNotification('Produit ajouté au panier !');
+        }
+
+        function updateCart() {
+            const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cartCount').textContent = cartCount;
+            const cartItemsDiv = document.getElementById('cartItems');
+            const cartTotalSpan = document.getElementById('cartTotal');
+            if (cart.length === 0) {
+                cartItemsDiv.innerHTML = '<p style="text-align: center; padding: 2rem;">Votre panier est vide</p>';
+                cartTotalSpan.textContent = '0';
+                return;
+            }
+            cartItemsDiv.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="cart-item-info">
+                        <div class="cart-item-title">${item.name}</div>
+                        <div class="cart-item-price">${item.price} TND × ${item.quantity}</div>
+                    </div>
+                    <div class="remove-item" onclick="removeFromCart(${item.id})">
+                        <i class="fas fa-trash"></i>
+                    </div>
+                </div>
+            `).join('');
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotalSpan.textContent = total;
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCart();
+        }
+
+        function filterByCategory(category) {
+            currentCategory = category;
+            displayProducts();
+            document.getElementById('products').scrollIntoView({behavior: 'smooth'});
+        }
+
+        function toggleCart() {
+            document.getElementById('cartSidebar').classList.toggle('open');
+            document.getElementById('overlay').classList.toggle('active');
+        }
+
+        function openCheckoutModal() {
+            if (cart.length === 0) {
+                showNotification('Votre panier est vide !');
+                return;
+            }
+            const orderItemsDiv = document.getElementById('orderItemsSummary');
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            orderItemsDiv.innerHTML = cart.map(item => `
+                <div class="order-item">
+                    <span>${item.name} × ${item.quantity}</span>
+                    <span>${item.price * item.quantity} TND</span>
+                </div>
+            `).join('');
+            document.getElementById('orderTotalSummary').textContent = total;
+            document.getElementById('checkoutForm').reset();
+            selectDeliveryMethod('whatsapp');
+            document.getElementById('checkoutModal').classList.add('active');
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById('checkoutModal').classList.remove('active');
+        }
+
+        function sendWhatsAppMessage(phoneNumber, message) {
+            let cleanPhone = phoneNumber.replace(/[^0-9]/g, '');
+            if (!cleanPhone.startsWith('216')) {
+                if (cleanPhone.startsWith('0')) {
+                    cleanPhone = '216' + cleanPhone.substring(1);
+                } else if (cleanPhone.length === 8) {
+                    cleanPhone = '216' + cleanPhone;
+                }
+            }
+            window.open(`https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        async function sendEmail(formData) {
+            if (FORMSPREE_ENDPOINT) {
+                try {
+                    const response = await fetch(FORMSPREE_ENDPOINT, {
+                        method: 'POST',
+                        body: formData,
+                        headers: { 'Accept': 'application/json' }
+                    });
+                    return response.ok;
+                } catch (error) {
+                    return false;
+                }
+            }
+            return false;
+        }
+
+        async function submitOrder() {
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const address = document.getElementById('address').value.trim();
+            
+            if (!firstName || !lastName || !phone || !address) {
+                showNotification('Veuillez remplir tous les champs obligatoires');
+                return;
+            }
+            if (selectedDeliveryMethod === 'email' && !email) {
+                showNotification('Veuillez entrer votre email');
+                return;
+            }
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const orderItems = cart.map(item => `${item.name} (${item.quantity}) - ${item.price * item.quantity} TND`).join('\n');
+            const orderItemsHTML = cart.map(item => `• ${item.name} × ${item.quantity} = ${item.price * item.quantity} TND`).join('%0A');
+            
+            const submitBtn = document.querySelector('.btn-submit');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Envoi...';
+            submitBtn.disabled = true;
+            
+            try {
+                let success = false;
+                if (selectedDeliveryMethod === 'whatsapp') {
+                    const customerMessage = `🛍️ *Bonjour ${firstName} ${lastName}*%0A%0AMerci pour votre commande chez *Glow Store* !%0A%0A📋 *Détails:*%0A${orderItemsHTML}%0A💰 *Total:* ${total} TND%0A📍 *Adresse:* ${address}%0A%0A✅ Commande reçue ! Nous vous contacterons bientôt.`;
+                    const ownerMessage = `🆕 *Nouvelle commande - Glow Store* 🆕%0A%0A👤 *Client:* ${firstName} ${lastName}%0A📞 *Tél:* ${phone}%0A📍 *Adresse:* ${address}%0A%0A🛍️ *Produits:*%0A${orderItemsHTML}%0A💰 *Total:* ${total} TND`;
+                    sendWhatsAppMessage(phone, customerMessage);
+                    sendWhatsAppMessage(STORE_SETTINGS.ownerWhatsApp, ownerMessage);
+                    success = true;
+                } else {
+                    const formData = new FormData();
+                    formData.append('firstName', firstName);
+                    formData.append('lastName', lastName);
+                    formData.append('phone', phone);
+                    formData.append('email', email);
+                    formData.append('address', address);
+                    formData.append('orderTotal', total + ' TND');
+                    formData.append('orderItems', orderItems);
+                    formData.append('_subject', `Nouvelle commande de ${firstName} ${lastName}`);
+                    success = await sendEmail(formData);
+                }
+                
+                if (success) {
+                    showNotification(`✓ Commande envoyée via ${selectedDeliveryMethod === 'whatsapp' ? 'WhatsApp' : 'email'} !`);
+                    cart = [];
+                    updateCart();
+                    closeCheckoutModal();
+                    if (selectedDeliveryMethod === 'whatsapp') toggleCart();
+                } else {
+                    showNotification('Erreur, veuillez réessayer');
+                }
+            } catch (error) {
+                showNotification('Une erreur est survenue');
+            } finally {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        }
+
+        function openWhatsApp() {
+            window.open(`https://wa.me/${STORE_SETTINGS.ownerWhatsApp}?text=${encodeURIComponent(STORE_SETTINGS.welcomeMessage)}`, '_blank');
+        }
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.remove(), 3000);
+        }
+
+        displayProducts();
+        setTimeout(() => selectDeliveryMethod('whatsapp'), 100);
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

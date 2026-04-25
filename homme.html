@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Glow Store | Vêtements Homme</title>
+    <meta name="description" content="Collection de vêtements et chaussures pour hommes - Hauts, bas et chaussures de qualité">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #faf1c2, #aca283);
+            color: white;
+            padding: 0.8rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            color: #e76231;
+            margin-right: 8px;
+        }
+
+        .logo a {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Menu Hamburger */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        nav {
+            display: flex;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s;
+            padding: 5px 0;
+        }
+
+        nav ul li a:hover {
+            color: #ff6b35;
+        }
+
+        .dropdown-menu {
+            background:  #aca283;
+            border: none;
+            margin-top: 0;
+        }
+
+        .dropdown-menu .dropdown-item {
+            color: white;
+        }
+
+        .dropdown-menu .dropdown-item:hover {
+            background: #ff6b35;
+            color: white;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -15px;
+            background: #ff6b35;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 8px;
+            font-size: 0.7rem;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #faf1c2, #aca283);
+            color: white;
+            padding: 2rem 5%;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Filter Section */
+        .filter-section {
+            background: white;
+            padding: 1.5rem;
+            margin: 1.5rem 5%;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .filter-title {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #b59535;
+            font-weight: bold;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 25px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .filter-btn.active {
+            background:  #aca283;
+            color: white;
+        }
+
+        .filter-btn:hover:not(.active) {
+            background: #e0e0e0;
+            transform: translateY(-2px);
+        }
+
+        .filter-btn i {
+            margin-right: 8px;
+        }
+
+        /* Products */
+        .products {
+            padding: 1rem 5% 3rem;
+            background: #f5f5f5;
+        }
+
+        .section-category {
+            margin-bottom: 2rem;
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #aca283;
+            border-right: 4px solid #ff6b35;
+            padding-right: 15px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff6b35;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: 0.75rem;
+        }
+
+        .product-category-tag {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 5px;
+            font-size: 0.7rem;
+        }
+
+        .product-info {
+            padding: 1.2rem;
+        }
+
+        .product-title {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: #aca283;
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            color: #ff6b35;
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 0.85rem;
+            margin-left: 8px;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            background: #aca283;
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background: #ff6b35;
+        }
+
+        /* Back Button */
+        .back-to-home {
+            display: inline-block;
+            margin: 0 5% 2rem;
+            background:  #aca283;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .back-to-home:hover {
+            background: #ff6b35;
+            color: white;
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 380px;
+            height: 100%;
+            background: white;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            z-index: 1001;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.open {
+            right: 0;
+        }
+
+        .cart-header {
+            background: #aca283;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 1rem;
+            padding: 0.8rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .cart-item-price {
+            color: #ff6b35;
+            font-size: 0.9rem;
+        }
+
+        .remove-item {
+            color: #ff4444;
+            cursor: pointer;
+        }
+
+        .cart-footer {
+            padding: 1rem;
+            border-top: 2px solid #eee;
+        }
+
+        .cart-total {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: #ff6b35;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #faf1c2, #aca283);
+            color: white;
+            padding: 1.2rem;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 1.3rem;
+        }
+
+        .modal-body {
+            padding: 1.2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .delivery-options {
+            display: flex;
+            gap: 0.8rem;
+            margin: 0.8rem 0;
+            flex-wrap: wrap;
+        }
+
+        .delivery-option {
+            flex: 1;
+            text-align: center;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .delivery-option.selected {
+            border-color: #ff6b35;
+            background: #fff3ef;
+        }
+
+        .delivery-option .whatsapp-icon {
+            color: #25D366;
+        }
+
+        .delivery-option .email-icon {
+            color: #ff6b35;
+        }
+
+        .order-summary {
+            background: #f8f9fa;
+            padding: 0.8rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .order-items {
+            max-height: 150px;
+            overflow-y: auto;
+            margin-bottom: 0.8rem;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid #ddd;
+            font-size: 0.85rem;
+        }
+
+        .modal-footer {
+            padding: 1rem;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 0.8rem;
+            justify-content: flex-end;
+        }
+
+        .btn-submit {
+            background: #ff6b35;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .btn-cancel {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            display: none;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        footer {
+            background: #dbcd9f;
+            color: white;
+            padding: 2rem 5% 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.4rem;
+        }
+
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .footer-section ul li a:hover {
+            color: #ff6b35;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.3rem;
+            margin-right: 0.8rem;
+            transition: color 0.3s;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #dd9504;
+            font-size: 0.8rem;
+        }
+
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #6cf060;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            z-index: 2001;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #25D366;
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                right: -280px;
+                width: 260px;
+                height: 100%;
+                background: linear-gradient(135deg, #faf1c2, #aca283);
+                z-index: 1002;
+                transition: right 0.3s ease;
+                padding: 60px 20px 20px;
+            }
+
+            nav.open {
+                right: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .close-menu-btn {
+                position: absolute;
+                top: 15px;
+                left: 15px;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 1rem;
+            }
+
+            .product-image {
+                height: 160px;
+            }
+
+            .filter-buttons {
+                gap: 0.5rem;
+            }
+
+            .filter-btn {
+                padding: 6px 15px;
+                font-size: 0.85rem;
+            }
+
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="logo">
+                <i class="bi bi-bag-heart-fill"></i>
+                <a href="index.html" style="color: white; text-decoration: none;">Glow Store</a>
+            </div>
+            <nav id="mainNav">
+                <button class="close-menu-btn" id="closeMenuBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="index.html#products">Produits</a></li>
+                    <li><a href="index.html#categories">Catégories</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            Vêtements
+                        </a>
+                        <ul class="dropdown-menu">
+                           
+                            <li><a class="dropdown-item" href="homme.html" style="color: #f5df7d;">Homme</a></li>
+                            <li><a class="dropdown-item" href="femme.html">Femme</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="cart-icon" onclick="toggleCart()">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-header">
+            <h1><i class="fas fa-mars"></i> Vêtements Homme</h1>
+            <p>Collection complète pour hommes : Hauts, Bas et Chaussures</p>
+        </div>
+
+        <!-- Filtre Section -->
+        <div class="filter-section">
+            <div class="filter-title">
+                <i class="fas fa-filter"></i> Filtrer par catégorie
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" id="filterAll" onclick="filterProducts('all')">
+                    <i class="fas fa-th-large"></i> Tous
+                </button>
+                <button class="filter-btn" id="filterHauts" onclick="filterProducts('hauts')">
+                    <i class="fas fa-tshirt"></i> Hauts (Chemises, T-shirts...)
+                </button>
+                <button class="filter-btn" id="filterBas" onclick="filterProducts('bas')">
+                     <img src="tsawr/un-pantalon.png" alt="pantalon" width="30"> Bas (Pantalons, Shorts...)
+                </button>
+                <button class="filter-btn" id="filterChaussures" onclick="filterProducts('chaussures')">
+                     <img src="tsawr/chaussure-longue.png" alt="pantalon" width="30"> Chaussures
+                </button>
+            </div>
+        </div>
+
+        <!-- Produits -->
+        <div class="products">
+            <div class="product-grid" id="productGrid"></div>
+        </div>
+
+        <a href="index.html" class="back-to-home">
+            <i class="fas fa-arrow-left"></i> Retour à l'accueil
+        </a>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Glow Store</h3>
+                <p>La meilleure boutique d'articles</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/glow.store125"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@glow.store125"><i class="bi bi-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Liens Rapides</h3>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="homme.html">Vêtements Homme</a></li>
+                    <li><a href="pull-capuche.html">Pull / Capuche</a></li>
+                    <li><a href="#">Politique de retour</a></li>
+                    <li><a href="#">Livraison</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Coordonnées</h3>
+                <ul>
+                    <li><i class="fas fa-phone"></i> +216 26 061 991</li>
+                    <li><i class="fas fa-envelope"></i> benabdejlileya74@gmail.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> M'saken, Sousse</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 Glow Store. Tous droits réservés</p>
+        </div>
+    </footer>
+
+    <div class="whatsapp-float" onclick="openWhatsApp()">
+        <i class="fab fa-whatsapp"></i>
+    </div>
+
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Panier</h3>
+            <i class="fas fa-times" style="cursor: pointer;" onclick="toggleCart()"></i>
+        </div>
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                Total: <span id="cartTotal">0</span> TND
+            </div>
+            <button class="checkout-btn" onclick="openCheckoutModal()">Passer à la caisse</button>
+        </div>
+    </div>
+    <div class="overlay" id="overlay" onclick="toggleCart()"></div>
+
+    <!-- Modal Checkout -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-clipboard-list"></i> Finaliser la commande</h2>
+            </div>
+            <div class="modal-body">
+                <form id="checkoutForm">
+                    <div class="form-group">
+                        <label>Prénom *</label>
+                        <input type="text" id="firstName" required placeholder="Votre prénom">
+                    </div>
+                    <div class="form-group">
+                        <label>Nom *</label>
+                        <input type="text" id="lastName" required placeholder="Votre nom">
+                    </div>
+                    <div class="form-group">
+                        <label>Téléphone *</label>
+                        <input type="tel" id="phone" required placeholder="216XXXXXXXX">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="email" placeholder="exemple@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Adresse *</label>
+                        <textarea id="address" required placeholder="Votre adresse complète"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Méthode d'envoi</label>
+                        <div class="delivery-options">
+                            <div class="delivery-option" onclick="selectDeliveryMethod('whatsapp')" id="optionWhatsapp">
+                                <i class="fab fa-whatsapp whatsapp-icon"></i>
+                                <h4>WhatsApp</h4>
+                            </div>
+                            <div class="delivery-option" onclick="selectDeliveryMethod('email')" id="optionEmail">
+                                <i class="fas fa-envelope email-icon"></i>
+                                <h4>Email</h4>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="order-summary">
+                        <h3>Récapitulatif</h3>
+                        <div class="order-items" id="orderItemsSummary"></div>
+                        <div><strong>Total: <span id="orderTotalSummary">0</span> TND</strong></div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeCheckoutModal()">Annuler</button>
+                <button class="btn-submit" onclick="submitOrder()">Confirmer</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configuration
+        const STORE_SETTINGS = {
+            ownerWhatsApp: "21625908089",
+            ownerEmail: "benabdejlileya74@gmail.com",
+            welcomeMessage: "Bienvenue chez Glow Store !"
+        };
+
+        const FORMSPREE_ENDPOINT = "https://formspree.io/f/xqewdzgz";
+        let selectedDeliveryMethod = "whatsapp";
+        
+        // Produits Homme
+        const products = [
+            // ========== HAUTS (Chemises, T-shirts, Polos, Hoodies) ==========
+            { id: 101, name: "Chemise Homme Blanche", category: "hauts", type: "Chemise", price: 89, oldPrice: 129, image: "https://images.unsplash.com/photo-1598032895397-b9472444bf93?w=400", badge: "Promo" },
+            { id: 102, name: "T-Shirt Homme Noir", category: "hauts", type: "T-shirt", price: 39, oldPrice: 59, image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400", badge: null },
+            { id: 103, name: "Polo Homme Bleu", category: "hauts", type: "Polo", price: 69, oldPrice: 99, image: "https://images.unsplash.com/photo-1586363104864-3e5e2b3d9d9e?w=400", badge: "Tendance" },
+            { id: 104, name: "Hoodie Homme Gris", category: "hauts", type: "Hoodie", price: 99, oldPrice: 149, image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400", badge: "Nouveau" },
+            { id: 105, name: "Chemise Homme Bleue", category: "hauts", type: "Chemise", price: 79, oldPrice: 119, image: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400", badge: null },
+            { id: 106, name: "T-Shirt Homme Blanc", category: "hauts", type: "T-shirt", price: 35, oldPrice: 55, image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400", badge: "Soldes" },
+            { id: 107, name: "Pull Homme Beige", category: "hauts", type: "Pull", price: 89, oldPrice: 129, image: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=400", badge: "Promo" },
+            { id: 108, name: "Veste Homme Noire", category: "hauts", type: "Veste", price: 149, oldPrice: 199, image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400", badge: "Premium" },
+            
+            // ========== BAS (Pantalons, Jeans, Shorts) ==========
+            { id: 201, name: "Jean Homme Bleu", category: "bas", type: "Jean", price: 99, oldPrice: 149, image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400", badge: "Meilleure vente" },
+            { id: 202, name: "Pantalon Chino Beige", category: "bas", type: "Pantalon", price: 79, oldPrice: 119, image: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=400", badge: null },
+            { id: 203, name: "Short Sport Homme", category: "bas", type: "Short", price: 49, oldPrice: 79, image: "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=400", badge: "Sport" },
+            { id: 204, name: "Pantalon Jogging Noir", category: "bas", type: "Jogging", price: 69, oldPrice: 99, image: "https://images.unsplash.com/photo-1600080972464-8e5f35f63d3a?w=400", badge: "Confort" },
+            { id: 205, name: "Jean Slim Noir", category: "bas", type: "Jean", price: 89, oldPrice: 139, image: "https://images.unsplash.com/photo-1542272604-6a6d64a8c6e8?w=400", badge: "Tendance" },
+            { id: 206, name: "Short Chino Beige", category: "bas", type: "Short", price: 59, oldPrice: 89, image: "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=400", badge: null },
+            { id: 207, name: "Pantalon Cargo Vert", category: "bas", type: "Cargo", price: 89, oldPrice: 129, image: "https://images.unsplash.com/photo-1517438476312-10d79c077509?w=400", badge: "Nouveau" },
+            
+            // ========== CHAUSSURES ==========
+            { id: 301, name: "فلاح للبيع", category: "chaussures", type: "Basket", price: 199, oldPrice: 299, image: "tsawr/fosh lfale7.jpg", badge: "Sport" },
+            { id: 302, name: "سباح منقذ", category: "chaussures", type: "Casual", price: 129, oldPrice: 189, image: "tsawr/fosh lghatas.jpg", badge: "Tendance" },
+            { id: 303, name: "كلوشار نطّار", category: "chaussures", type: "Basket", price: 169, oldPrice: 249, image: "tsawr/fosh lklouchar.jpg", badge: "Promo" },
+            { id: 304, name: "المهندس النائم", category: "chaussures", type: "Mocassin", price: 149, oldPrice: 199, image: "tsawr/fosh ra9ed.jpg", badge: "Chic" },
+            { id: 305, name: "دجاّج", category: "chaussures", type: "Basket", price: 159, oldPrice: 229, image: "tsawr/lmohandes edajej.jpg", badge: "Soldes" },
+            { id: 306, name: "el patron", category: "chaussures", type: "Chaussure", price: 139, oldPrice: 199, image: "tsawr/lmohandes l3arf.jpg", badge: null }
+        ];
+
+        let cart = [];
+        let currentFilter = "all";
+
+        // Navigation mobile
+        function openNavMenu() {
+            document.getElementById('mainNav').classList.add('open');
+        }
+
+        function closeNavMenu() {
+            document.getElementById('mainNav').classList.remove('open');
+        }
+
+        if (document.getElementById('menuToggle')) {
+            document.getElementById('menuToggle').addEventListener('click', openNavMenu);
+        }
+        if (document.getElementById('closeMenuBtn')) {
+            document.getElementById('closeMenuBtn').addEventListener('click', closeNavMenu);
+        }
+
+        // Filtre
+        function filterProducts(category) {
+            currentFilter = category;
+            
+            document.getElementById('filterAll').classList.remove('active');
+            document.getElementById('filterHauts').classList.remove('active');
+            document.getElementById('filterBas').classList.remove('active');
+            document.getElementById('filterChaussures').classList.remove('active');
+            
+            if (category === 'all') document.getElementById('filterAll').classList.add('active');
+            else if (category === 'hauts') document.getElementById('filterHauts').classList.add('active');
+            else if (category === 'bas') document.getElementById('filterBas').classList.add('active');
+            else if (category === 'chaussures') document.getElementById('filterChaussures').classList.add('active');
+            
+            displayProducts();
+        }
+
+        function displayProducts() {
+            const grid = document.getElementById('productGrid');
+            let filtered = products;
+            
+            if (currentFilter !== 'all') {
+                filtered = products.filter(p => p.category === currentFilter);
+            }
+            
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div style="text-align: center; padding: 3rem; grid-column: 1/-1;">Aucun produit trouvé</div>';
+                return;
+            }
+            
+            grid.innerHTML = filtered.map(p => {
+                let categoryIcon = "";
+                let categoryName = "";
+                if (p.category === 'hauts') { categoryIcon = "fa-tshirt"; categoryName = "Haut"; }
+                else if (p.category === 'bas') { categoryIcon = "fa-shopping-bag"; categoryName = "Bas"; }
+                else if (p.category === 'chaussures') { categoryIcon = "fa-shoe-prints"; categoryName = "Chaussure"; }
+                
+                return `
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="${p.image}" alt="${p.name}">
+                        ${p.badge ? `<div class="product-badge">${p.badge}</div>` : ''}
+                        <div class="product-category-tag">
+                            <i class="fas ${categoryIcon}"></i> ${categoryName} - ${p.type}
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${p.name}</h3>
+                        <p class="product-price">
+                            ${p.price} TND
+                            ${p.oldPrice ? `<span class="old-price">${p.oldPrice} TND</span>` : ''}
+                        </p>
+                        <button class="add-to-cart" onclick="addToCart(${p.id})">
+                            <i class="fas fa-shopping-cart"></i> Ajouter
+                        </button>
+                    </div>
+                </div>
+            `}).join('');
+        }
+
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            const existing = cart.find(item => item.id === id);
+            if (existing) existing.quantity++;
+            else cart.push({...product, quantity: 1});
+            updateCart();
+            showNotification('Produit ajouté au panier !');
+        }
+
+        function updateCart() {
+            const count = cart.reduce((s, i) => s + i.quantity, 0);
+            document.getElementById('cartCount').textContent = count;
+            
+            const itemsDiv = document.getElementById('cartItems');
+            const totalSpan = document.getElementById('cartTotal');
+            
+            if (cart.length === 0) {
+                itemsDiv.innerHTML = '<p style="text-align:center;padding:2rem;">Votre panier est vide</p>';
+                totalSpan.textContent = '0';
+                return;
+            }
+            
+            itemsDiv.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <img src="${item.image}">
+                    <div class="cart-item-info">
+                        <div class="cart-item-title">${item.name}</div>
+                        <div class="cart-item-price">${item.price} TND × ${item.quantity}</div>
+                    </div>
+                    <div class="remove-item" onclick="removeFromCart(${item.id})">
+                        <i class="fas fa-trash"></i>
+                    </div>
+                </div>
+            `).join('');
+            
+            const total = cart.reduce((s, i) => s + (i.price * i.quantity), 0);
+            totalSpan.textContent = total;
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCart();
+        }
+
+        function toggleCart() {
+            document.getElementById('cartSidebar').classList.toggle('open');
+            document.getElementById('overlay').classList.toggle('active');
+        }
+
+        function selectDeliveryMethod(method) {
+            selectedDeliveryMethod = method;
+            document.getElementById('optionWhatsapp').classList.remove('selected');
+            document.getElementById('optionEmail').classList.remove('selected');
+            if (method === 'whatsapp') {
+                document.getElementById('optionWhatsapp').classList.add('selected');
+                document.getElementById('email').removeAttribute('required');
+            } else {
+                document.getElementById('optionEmail').classList.add('selected');
+                document.getElementById('email').setAttribute('required', 'required');
+            }
+        }
+
+        function openCheckoutModal() {
+            if (cart.length === 0) {
+                showNotification('Votre panier est vide !');
+                return;
+            }
+            const total = cart.reduce((s, i) => s + (i.price * i.quantity), 0);
+            document.getElementById('orderItemsSummary').innerHTML = cart.map(i => `
+                <div class="order-item"><span>${i.name} × ${i.quantity}</span><span>${i.price * i.quantity} TND</span></div>
+            `).join('');
+            document.getElementById('orderTotalSummary').textContent = total;
+            document.getElementById('checkoutModal').classList.add('active');
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById('checkoutModal').classList.remove('active');
+        }
+
+        function sendWhatsAppMessage(phone, message) {
+            let clean = phone.replace(/[^0-9]/g, '');
+            if (!clean.startsWith('216')) clean = '216' + clean.replace(/^0/, '');
+            window.open(`https://wa.me/${clean}?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        async function submitOrder() {
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const address = document.getElementById('address').value.trim();
+            
+            if (!firstName || !lastName || !phone || !address) {
+                showNotification('Veuillez remplir tous les champs obligatoires');
+                return;
+            }
+            
+            const total = cart.reduce((s, i) => s + (i.price * i.quantity), 0);
+            const items = cart.map(i => `• ${i.name} × ${i.quantity} = ${i.price * i.quantity} TND`).join('%0A');
+            
+            if (selectedDeliveryMethod === 'whatsapp') {
+                const customerMsg = `🛍️ *Bonjour ${firstName} ${lastName}*%0A%0AMerci pour votre commande chez *Glow Store* !%0A%0A📋 *Détails:*%0A${items}%0A💰 *Total:* ${total} TND%0A📍 *Adresse:* ${address}%0A%0A✅ Commande reçue ! Nous vous contacterons bientôt.`;
+                const ownerMsg = `🆕 *Nouvelle commande - Glow Store* 🆕%0A%0A👤 *Client:* ${firstName} ${lastName}%0A📞 *Tél:* ${phone}%0A📍 *Adresse:* ${address}%0A%0A🛍️ *Produits:*%0A${items}%0A💰 *Total:* ${total} TND`;
+                sendWhatsAppMessage(phone, customerMsg);
+                sendWhatsAppMessage(STORE_SETTINGS.ownerWhatsApp, ownerMsg);
+                showNotification('✓ Commande envoyée avec succès !');
+                cart = [];
+                updateCart();
+                closeCheckoutModal();
+                toggleCart();
+            } else {
+                const formData = new FormData();
+                formData.append('firstName', firstName);
+                formData.append('lastName', lastName);
+                formData.append('phone', phone);
+                formData.append('email', email);
+                formData.append('address', address);
+                formData.append('orderTotal', total + ' TND');
+                try {
+                    await fetch(FORMSPREE_ENDPOINT, { method: 'POST', body: formData });
+                    showNotification('✓ Commande envoyée par email !');
+                    cart = [];
+                    updateCart();
+                    closeCheckoutModal();
+                } catch(e) {
+                    showNotification('Erreur, veuillez réessayer');
+                }
+            }
+        }
+
+        function openWhatsApp() {
+            window.open(`https://wa.me/${STORE_SETTINGS.ownerWhatsApp}?text=Bonjour%20Glow%20Store`, '_blank');
+        }
+
+        function showNotification(msg) {
+            const n = document.createElement('div');
+            n.className = 'notification';
+            n.textContent = msg;
+            document.body.appendChild(n);
+            setTimeout(() => n.remove(), 3000);
+        }
+
+        // Initialisation
+        displayProducts();
+        selectDeliveryMethod('whatsapp');
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
